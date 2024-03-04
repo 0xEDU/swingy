@@ -1,5 +1,7 @@
 package ft.etachott;
 
+import ft.etachott.controller.ConsoleController;
+
 import java.util.Objects;
 
 public class Main {
@@ -8,7 +10,8 @@ public class Main {
             System.err.println("Usage: java -jar swingy.jar [console | gui]");
         }
         if (Objects.equals(args[0], "console")) {
-            Console.run();
+            ConsoleController consoleController = new ConsoleController();
+            consoleController.run();
         } else if (Objects.equals(args[0], "gui")) {
             System.out.println("gui!");
         }
