@@ -9,14 +9,13 @@ import ft.etachott.view.ConsoleView;
 
 public class ConsoleController extends GameController {
     private final LineReader _reader;
-    private final AutosuggestionWidgets _autosuggestionWidgets;
     static private final ConsoleView _consoleView = new ConsoleView();
 
     public ConsoleController() {
         super(_consoleView);
         _reader = LineReaderBuilder.builder().build();
-        _autosuggestionWidgets = new AutosuggestionWidgets(_reader);
-        _autosuggestionWidgets.enable();
+        AutosuggestionWidgets autosuggestionWidgets = new AutosuggestionWidgets(_reader);
+        autosuggestionWidgets.enable();
     }
 
     @Override
