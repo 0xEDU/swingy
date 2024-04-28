@@ -1,7 +1,5 @@
 package ft.etachott.view;
 
-import ft.etachott.view.GameView;
-
 public class ConsoleView extends GameView {
     public ConsoleView() {
         super();
