@@ -8,35 +8,32 @@ import org.jline.widget.AutosuggestionWidgets;
 import ft.etachott.view.ConsoleView;
 
 public class ConsoleController extends GameController {
-    private final LineReader reader;
-    private final AutosuggestionWidgets autosuggestionWidgets;
-    private final ConsoleView consoleView;
+    private final LineReader _reader;
+    private final AutosuggestionWidgets _autosuggestionWidgets;
+    static private final ConsoleView _consoleView = new ConsoleView();
 
     public ConsoleController() {
-        this.reader = LineReaderBuilder.builder().build();
-        this.autosuggestionWidgets = new AutosuggestionWidgets(reader);
-        this.consoleView = new ConsoleView();
-        autosuggestionWidgets.enable();
-        super();
+        super(_consoleView);
+        _reader = LineReaderBuilder.builder().build();
+        _autosuggestionWidgets = new AutosuggestionWidgets(_reader);
+        _autosuggestionWidgets.enable();
     }
 
     @Override
     public void run() {
-        consoleView.printBanner();
+        _consoleView.initialView();
         while (true) {
             try {
                 super.handleInput(this.getInput());
-            } catch (UserInterruptException e) {
-                continue;
+            } catch (UserInterruptException ignored) {
             } catch (EndOfFileException e) {
-                System.out.println("See you later!");
-                System.exit(0);
+                super.quit();
             }
         }
     }
 
 	@Override
 	public String getInput() {
-        return this.reader.readLine("--> ");
+        return _reader.readLine("--> ").toLowerCase();
 	}
 }
