@@ -6,13 +6,27 @@ public abstract class GameController {
 	public abstract String getInput();
 	public abstract void run();
 
-	public GameView viewer;
+	final private GameView _viewer;
 
 	GameController(GameView viewer) {
-		this.viewer = viewer;
+		_viewer = viewer;
 	}
 
 	public void handleInput(String input) {
-		System.out.println("input -> " + input);
+		switch (input) {
+			case "exit":
+				this.quit();
+			case "create":
+				_viewer.createHeroView();
+				break ;
+			case "choose":
+				_viewer.chooseHeroView();
+				break ;
+		}
+	}
+
+	public void quit() {
+		_viewer.exitView();
+		System.exit(0);
 	}
 }
