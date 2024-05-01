@@ -17,9 +17,9 @@ public class ConsoleView implements IGameView {
         return prettyReadline("").toLowerCase();
     }
 
-    public void characterClassView() {
+    public void characterRoleView() {
         System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
-        System.out.println("│ Available classes:                                                                  │");
+        System.out.println("│ Available roles:                                                                    │");
         System.out.println("│                                                                                     │");
         System.out.println("│ NetRunner: Rather than living in realspace where your abilities are limited by      │");
         System.out.println("│            reality, you prefer to experience life through the means offered within  │");
@@ -46,12 +46,11 @@ public class ConsoleView implements IGameView {
         return _reader.readLine("╰➤ " + promptMessage);
     }
 
-    public String[] getRawCharacterInput() throws InterruptedException {
+    public String[] getRawCharacterInput() {
         String characterName = prettyReadline("Enter your character name: ");
-        Thread.sleep(2000);
-        characterClassView();
-        String characterClass = prettyReadline("Enter your character class: ");
-        return new String[]{characterName, characterClass};
+        characterRoleView();
+        String characterRole = prettyReadline("Enter your character role: ").toLowerCase();
+        return new String[]{characterName, characterRole};
     }
 
     public void initialView() {
@@ -70,7 +69,7 @@ public class ConsoleView implements IGameView {
 
     public void createCharacterView() {
         System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
-        System.out.println("│ So you wanna be a cyberpunk? Choose your name and get a class.                      │");
+        System.out.println("│ So you wanna be a cyberpunk? Choose your name and get a role.                       │");
         System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
     }
 

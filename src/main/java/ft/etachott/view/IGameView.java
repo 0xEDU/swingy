@@ -7,6 +7,6 @@ public interface IGameView {
     void exitView();
     String getInput();
     String[] getRawCharacterInput();
-    void characterClassView();
+    void characterRoleView();
     void errorView(String error);
 }
