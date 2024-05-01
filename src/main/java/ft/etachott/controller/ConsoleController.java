@@ -21,6 +21,8 @@ public class ConsoleController extends GameController {
             } catch (EndOfFileException e) {
                 super.quit();
                 System.exit(0);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }
