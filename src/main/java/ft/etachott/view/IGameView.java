@@ -6,4 +6,5 @@ public interface IGameView {
     void chooseHeroView();
     void exitView();
     String getInput();
+    String[] getRawHeroInput() throws InterruptedException;
 }
