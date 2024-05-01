@@ -13,12 +13,13 @@ public abstract class GameController {
 		_gameView = gameView;
 	}
 
-	public void handleInput(String input) {
+	public void handleInput(String input) throws InterruptedException {
 		switch (input) {
 			case "exit":
 				quit();
 			case "create":
 				_gameView.createHeroView();
+				String[] rawHeroInput = _gameView.getRawHeroInput();
 				_gameService.createHero();
 				break ;
 			case "choose":
