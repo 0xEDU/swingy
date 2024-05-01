@@ -34,7 +34,7 @@ public class ConsoleView implements IGameView {
         System.out.println("=== Nomad: You live with a Nomad pack that roams the freeways. You look for         ===");
         System.out.println("===        supplies, odd jobs and spare parts in a world where society has          ===");
         System.out.println("===        fragmented.                                                              ===");
-        System.out.println("=== Base Stats:  30 Attack | 30 Defense | 30 Health Points                          ===");
+        System.out.println("=== Base Stats:  20 Attack | 20 Defense | 30 Health Points                          ===");
         System.out.println("=======================================================================================");
     }
 
