@@ -23,7 +23,7 @@ public class ConsoleController extends GameController {
         _consoleView.initialView();
         while (true) {
             try {
-                super.handleInput(this.getInput());
+                super.handleInput(getInput());
             } catch (UserInterruptException ignored) {
             } catch (EndOfFileException e) {
                 super.quit();
