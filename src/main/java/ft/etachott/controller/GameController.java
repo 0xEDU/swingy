@@ -1,5 +1,6 @@
 package ft.etachott.controller;
 
+import ft.etachott.component.InputValidator;
 import ft.etachott.service.GameService;
 import ft.etachott.view.IGameView;
 import org.jline.reader.EndOfFileException;
@@ -22,25 +23,28 @@ public class GameController {
 			} catch (EndOfFileException e) {
 				quit();
 				System.exit(0);
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
 			}
 		}
 	}
 
 
-	public void handleInput(String input) throws InterruptedException {
-		switch (input) {
-			case "exit":
-				quit();
-			case "create":
-				_gameView.createCharacterView();
-				String[] rawCharacterInput = _gameView.getRawCharacterInput();
-				_gameService.createCharacter();
-				break ;
-			case "choose":
-				_gameView.chooseCharacterView();
-				break ;
+	public void handleInput(String input) {
+		try {
+			switch (input) {
+				case "exit":
+					quit();
+				case "create":
+					_gameView.createCharacterView();
+					String[] rawCharacterInput = _gameView.getRawCharacterInput();
+					InputValidator.validateCharacterCreationInput(rawCharacterInput);
+					_gameService.createCharacter(rawCharacterInput);
+					break ;
+				case "choose":
+					_gameView.chooseCharacterView();
+					break ;
+			}
+		} catch (IllegalArgumentException e) {
+			_gameView.errorView(e.getMessage());
 		}
 	}
 
