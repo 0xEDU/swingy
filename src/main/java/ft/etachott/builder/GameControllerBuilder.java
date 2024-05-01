@@ -2,7 +2,6 @@ package ft.etachott.builder;
 
 import ft.etachott.controller.GameController;
 import ft.etachott.view.IGameView;
-import ft.etachott.service.GameService;
 
 public class GameControllerBuilder {
     private IGameView _gameView;
