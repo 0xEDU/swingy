@@ -1,6 +1,8 @@
 package ft.etachott;
 
-import ft.etachott.controller.ConsoleController;
+import ft.etachott.builder.GameControllerBuilder;
+import ft.etachott.controller.GameController;
+import ft.etachott.view.ConsoleView;
 
 import java.util.Objects;
 
@@ -9,8 +11,11 @@ public class Main {
         if (args.length != 1) {
             System.err.println("Usage: java -jar swingy.jar [console | gui]");
         }
+        GameControllerBuilder gameControllerBuilder = new GameControllerBuilder();
         if (Objects.equals(args[0], "console")) {
-            ConsoleController consoleController = new ConsoleController();
+            GameController consoleController = gameControllerBuilder
+                    .setGameView(new ConsoleView())
+                    .build();
             consoleController.run();
         } else if (Objects.equals(args[0], "gui")) {
             System.out.println("gui!");
