@@ -1,11 +1,8 @@
 package ft.etachott.view;
 
-public class ConsoleView extends GameView {
-    public ConsoleView() {
-        super();
-    }
+public class ConsoleView implements IGameView {
+    public ConsoleView() {}
 
-    @Override
     public void initialView() {
         System.out.println("=========================================================");
         System.out.println("================== WELCOME TO SWINGY!! ==================");
@@ -18,17 +15,14 @@ public class ConsoleView extends GameView {
         System.out.println("=========================================================");
     }
 
-    @Override
     public void createHeroView() {
         System.out.println("create hero");
     }
 
-    @Override
     public void chooseHeroView() {
         System.out.println("choose hero");
     }
 
-    @Override
     public void exitView() {
         System.out.println("See you later!");
     }
