@@ -1,32 +1,35 @@
 package ft.etachott.controller;
 
-import ft.etachott.view.GameView;
+import ft.etachott.service.GameService;
+import ft.etachott.view.IGameView;
 
 public abstract class GameController {
 	public abstract String getInput();
 	public abstract void run();
 
-	final private GameView _viewer;
+	final private IGameView _gameView;
+	final private GameService _gameService = new GameService();
 
-	GameController(GameView viewer) {
-		_viewer = viewer;
+	GameController(IGameView gameView) {
+		_gameView = gameView;
 	}
 
 	public void handleInput(String input) {
 		switch (input) {
 			case "exit":
-				this.quit();
+				quit();
 			case "create":
-				_viewer.createHeroView();
+				_gameView.createHeroView();
+				_gameService.createHero();
 				break ;
 			case "choose":
-				_viewer.chooseHeroView();
+				_gameView.chooseHeroView();
 				break ;
 		}
 	}
 
 	public void quit() {
-		_viewer.exitView();
+		_gameView.exitView();
 		System.exit(0);
 	}
 }
