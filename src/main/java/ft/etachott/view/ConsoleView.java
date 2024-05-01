@@ -14,42 +14,46 @@ public class ConsoleView implements IGameView {
     }
 
     public String getInput() {
-        return _reader.readLine("--> ").toLowerCase();
+        return prettyReadline("").toLowerCase();
     }
 
     public void characterClassView() {
-        System.out.println("=======================================================================================");
-        System.out.println("=== Available classes:                                                              ===");
-        System.out.println("===                                                                                 ===");
-        System.out.println("=== NetRunner: Rather than living in realspace where their abilities are limited    ===");
-        System.out.println("===            by reality, Netrunners prefer to experience life through the means   ===");
-        System.out.println("===            offered within the Net's artificial universe.                        ===");
-        System.out.println("=== Base Stats:  30 Attack | 15 Defense | 25 Health Points                          ===");
-        System.out.println("===                                                                                 ===");
-        System.out.println("=== Techie: You make your living by building, fixing and modifying stuff - a        ===");
-        System.out.println("===         crucial occupation in a technological world where no one knows how      ===");
-        System.out.println("===         half the stuff works.                                                   ===");
-        System.out.println("=== Base Stats:  15 Attack | 30 Defense | 35 Health Points                          ===");
-        System.out.println("===                                                                                 ===");
-        System.out.println("=== Nomad: You live with a Nomad pack that roams the freeways. You look for         ===");
-        System.out.println("===        supplies, odd jobs and spare parts in a world where society has          ===");
-        System.out.println("===        fragmented.                                                              ===");
-        System.out.println("=== Base Stats:  20 Attack | 20 Defense | 30 Health Points                          ===");
-        System.out.println("=======================================================================================");
+        System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
+        System.out.println("│ Available classes:                                                                  │");
+        System.out.println("│                                                                                     │");
+        System.out.println("│ NetRunner: Rather than living in realspace where your abilities are limited by      │");
+        System.out.println("│            reality, you prefer to experience life through the means offered within  │");
+        System.out.println("│            the Net's artificial universe.                                           │");
+        System.out.println("│ Base Stats:  30 Attack | 15 Defense | 25 Health Points                              │");
+        System.out.println("│                                                                                     │");
+        System.out.println("│ Techie: You make your living by building, fixing and modifying stuff - a crucial    │");
+        System.out.println("│         occupation in a technological world where no one knows how half the stuff   │");
+        System.out.println("│         works.                                                                      │");
+        System.out.println("│ Base Stats:  15 Attack | 30 Defense | 35 Health Points                              │");
+        System.out.println("│                                                                                     │");
+        System.out.println("│ Nomad: You live with a Nomad pack that roams the freeways. You look for supplies,   │");
+        System.out.println("│        odd jobs and spare parts in a world where society has fragmented.            │");
+        System.out.println("│ Base Stats:  20 Attack | 20 Defense | 30 Health Points                              │");
+        System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
+    }
+
+    private String prettyReadline(String promptMessage) {
+        System.out.println("╭──────────────────────────────────────────────────────────────────────────────────── •");
+        return _reader.readLine("╰➤ " + promptMessage);
     }
 
     public String[] getRawCharacterInput() throws InterruptedException {
-        String characterName = _reader.readLine("Enter your character name: ");
+        String characterName = prettyReadline("Enter your character name: ");
         Thread.sleep(2000);
-        System.out.println();
         characterClassView();
-        String characterClass = _reader.readLine("Enter your character class: ");
+        String characterClass = prettyReadline("Enter your character class: ");
         return new String[]{characterName, characterClass};
     }
 
     public void initialView() {
+        System.out.print("\033[H\033[2J");
         System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
-        System.out.println("│ SWINGY                                                                              │");
+        System.out.println("│ CyberSWINGY                                                                         │");
         System.out.println("│ The Roleplaying Game of the Dark Future                                             │");
         System.out.println("│                                                                                     │");
         System.out.println("│ Available commands:                                                                 │");
@@ -62,7 +66,7 @@ public class ConsoleView implements IGameView {
 
     public void createCharacterView() {
         System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
-        System.out.println("│ Time to create your character! Choose a nice name and pick a class!                 │");
+        System.out.println("│ So you wanna be a cyberpunk? Choose your name and get a class.                      │");
         System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
     }
 
@@ -73,6 +77,4 @@ public class ConsoleView implements IGameView {
     public void exitView() {
         System.out.println("See you later!");
     }
-
-
 }
