@@ -5,4 +5,5 @@ public interface IGameView {
     void createHeroView();
     void chooseHeroView();
     void exitView();
+    String getInput();
 }

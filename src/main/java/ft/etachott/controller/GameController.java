@@ -4,7 +4,6 @@ import ft.etachott.service.GameService;
 import ft.etachott.view.IGameView;
 
 public abstract class GameController {
-	public abstract String getInput();
 	public abstract void run();
 
 	final private IGameView _gameView;

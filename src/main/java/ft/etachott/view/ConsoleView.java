@@ -1,7 +1,21 @@
 package ft.etachott.view;
 
+import org.jline.reader.LineReader;
+import org.jline.reader.LineReaderBuilder;
+import org.jline.widget.AutosuggestionWidgets;
+
 public class ConsoleView implements IGameView {
-    public ConsoleView() {}
+    private final LineReader _reader;
+
+    public ConsoleView() {
+        _reader = LineReaderBuilder.builder().build();
+        AutosuggestionWidgets autosuggestionWidgets = new AutosuggestionWidgets(_reader);
+        autosuggestionWidgets.enable();
+    }
+
+    public String getInput() {
+        return _reader.readLine("--> ").toLowerCase();
+    }
 
     public void initialView() {
         System.out.println("=========================================================");
