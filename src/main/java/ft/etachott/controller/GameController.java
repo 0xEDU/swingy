@@ -18,12 +18,12 @@ public abstract class GameController {
 			case "exit":
 				quit();
 			case "create":
-				_gameView.createHeroView();
-				String[] rawHeroInput = _gameView.getRawHeroInput();
-				_gameService.createHero();
+				_gameView.createCharacterView();
+				String[] rawCharacterInput = _gameView.getRawCharacterInput();
+				_gameService.createCharacter();
 				break ;
 			case "choose":
-				_gameView.chooseHeroView();
+				_gameView.chooseCharacterView();
 				break ;
 		}
 	}

@@ -6,7 +6,7 @@ public class GameService {
     final private GameRepository _gameRepository = new GameRepository();
     public GameService() {}
 
-    public void createHero() {
+    public void createCharacter() {
 
     }
 }

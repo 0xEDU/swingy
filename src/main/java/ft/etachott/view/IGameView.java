@@ -2,9 +2,10 @@ package ft.etachott.view;
 
 public interface IGameView {
     void initialView();
-    void createHeroView();
-    void chooseHeroView();
+    void createCharacterView();
+    void chooseCharacterView();
     void exitView();
     String getInput();
-    String[] getRawHeroInput() throws InterruptedException;
+    String[] getRawCharacterInput() throws InterruptedException;
+    void characterClassView();
 }

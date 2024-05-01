@@ -17,7 +17,7 @@ public class ConsoleView implements IGameView {
         return _reader.readLine("--> ").toLowerCase();
     }
 
-    private void heroClassView() {
+    public void characterClassView() {
         System.out.println("=======================================================================================");
         System.out.println("=== Available classes:                                                              ===");
         System.out.println("===                                                                                 ===");
@@ -38,35 +38,36 @@ public class ConsoleView implements IGameView {
         System.out.println("=======================================================================================");
     }
 
-    public String[] getRawHeroInput() throws InterruptedException {
-        String heroName = _reader.readLine("Enter your hero name: ");
+    public String[] getRawCharacterInput() throws InterruptedException {
+        String characterName = _reader.readLine("Enter your character name: ");
         Thread.sleep(2000);
         System.out.println();
-        heroClassView();
-        String heroClass = _reader.readLine("Enter your hero class: ");
-        return new String[]{heroName, heroClass};
+        characterClassView();
+        String characterClass = _reader.readLine("Enter your character class: ");
+        return new String[]{characterName, characterClass};
     }
 
     public void initialView() {
-        System.out.println("=========================================================");
-        System.out.println("================== WELCOME TO SWINGY!! ==================");
-        System.out.println("=========================================================");
-        System.out.println("=== AVAILABLE COMMANDS:                               ===");
-        System.out.println("===                                                   ===");
-        System.out.println("=== CHOOSE => Choose a hero                           ===");
-        System.out.println("=== CREATE => Create a hero                           ===");
-        System.out.println("=== EXIT   => Quit the game                           ===");
-        System.out.println("=========================================================");
+        System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
+        System.out.println("│ SWINGY                                                                              │");
+        System.out.println("│ The Roleplaying Game of the Dark Future                                             │");
+        System.out.println("│                                                                                     │");
+        System.out.println("│ Available commands:                                                                 │");
+        System.out.println("│                                                                                     │");
+        System.out.println("│ Choose -> Choose a character                                                        │");
+        System.out.println("│ Create -> Create a character                                                        │");
+        System.out.println("│ Exit   -> Quit the game                                                             │");
+        System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
     }
 
-    public void createHeroView() {
-        System.out.println("=======================================================================================");
-        System.out.println("=== Time to create your hero! Choose a nice name and pick a class!                  ===");
-        System.out.println("=======================================================================================");
+    public void createCharacterView() {
+        System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
+        System.out.println("│ Time to create your character! Choose a nice name and pick a class!                 │");
+        System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
     }
 
-    public void chooseHeroView() {
-        System.out.println("choose hero");
+    public void chooseCharacterView() {
+        System.out.println("choose character");
     }
 
     public void exitView() {
