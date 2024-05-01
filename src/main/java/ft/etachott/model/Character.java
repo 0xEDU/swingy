@@ -1,10 +1,21 @@
 package ft.etachott.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Characters")
 public class Character {
-    private final String _name;
-    private final String _role;
+    @Id
+    @GeneratedValue
+    private Long _id;
+
+    private String _name;
+    private String _role;
     private int _level;
-    private long _exp;
+    private Long _exp;
     private int _attack;
     private int _defense;
     private int _hitPoints;
@@ -12,23 +23,7 @@ public class Character {
     private String _armor = null;
     private String _helm = null;
 
-    public Character(
-            String name,
-            String role,
-            int level,
-            long exp,
-            int attack,
-            int defense,
-            int hitPoints
-    ) {
-        _name = name;
-        _role = role;
-        _level = level;
-        _exp = exp;
-        _attack = attack;
-        _defense = defense;
-        _hitPoints = hitPoints;
-    }
+    public Character( ) {}
 
     public String getName() {
         return _name;
