@@ -37,6 +37,10 @@ public class ConsoleView implements IGameView {
         System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
     }
 
+    public void errorView(String error) {
+        System.out.println("─➤ ERROR: " + error);
+    }
+
     private String prettyReadline(String promptMessage) {
         System.out.println("╭──────────────────────────────────────────────────────────────────────────────────── •");
         return _reader.readLine("╰➤ " + promptMessage);

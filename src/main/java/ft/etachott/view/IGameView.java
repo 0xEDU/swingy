@@ -6,6 +6,7 @@ public interface IGameView {
     void chooseCharacterView();
     void exitView();
     String getInput();
-    String[] getRawCharacterInput() throws InterruptedException;
+    String[] getRawCharacterInput();
     void characterClassView();
+    void errorView(String error);
 }
