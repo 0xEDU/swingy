@@ -1,0 +1,16 @@
+version: '3'
+services:
+  postgres-swingy:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+volumes:
+  django-vol:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '~/goinfre/swingy/postgres'
