@@ -12,14 +12,15 @@ public class Main {
             System.err.println("Usage: java -jar swingy.jar [console | gui]");
         }
         GameControllerBuilder gameControllerBuilder = new GameControllerBuilder();
-        if (Objects.equals(args[0], "console")) {
-            GameController consoleController = gameControllerBuilder
-                    .setGameView(new ConsoleView())
-                    .build();
-            consoleController.run();
-        } else if (Objects.equals(args[0], "gui")) {
-            System.out.println("gui!");
+        switch (args[0]) {
+            case "gui":
+                System.out.println("gui!");
+            case "console":
+            default:
+                GameController consoleController = gameControllerBuilder
+                        .setGameView(new ConsoleView())
+                        .build();
+                consoleController.run();
         }
-
     }
 }
