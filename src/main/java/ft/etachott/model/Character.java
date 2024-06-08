@@ -2,6 +2,7 @@ package ft.etachott.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -9,91 +10,99 @@ import jakarta.persistence.Table;
 @Table(name = "characters")
 public class Character {
     @Id
-    @GeneratedValue
-    private Long _id;
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    private Long id;
 
-    private String _name;
-    private String _role;
-    private int _level;
-    private Long _exp;
-    private int _attack;
-    private int _defense;
-    private int _hitPoints;
-    private String _weapon = null;
-    private String _armor = null;
-    private String _helm = null;
+    private String name;
+    private String role;
+    private int level;
+    private Long exp;
+    private int attack;
+    private int defense;
+    private int hitPoints;
+    private String weapon = null;
+    private String armor = null;
+    private String helm = null;
 
     public Character( ) {}
 
     public String getName() {
-        return _name;
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getRole() {
-        return _role;
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setLevel(int level) {
-        _level = level;
+        this.level = level;
     }
 
     public int getLevel() {
-        return _level;
+        return level;
     }
 
     public void setExp(long exp) {
-        _exp = exp;
+        this.exp = exp;
     }
 
     public long getExp() {
-        return _exp;
+        return exp;
     }
 
     public void setAttack(int attack) {
-        _attack = attack;
+        this.attack = attack;
     }
 
     public int getAttack() {
-        return _attack;
+        return attack;
     }
 
     public void setDefense(int defense) {
-        _defense = defense;
+        this.defense = defense;
     }
 
     public int getDefense() {
-        return _defense;
+        return defense;
     }
 
     public void setHitPoints(int hitPoints) {
-        _hitPoints = hitPoints;
+        this.hitPoints = hitPoints;
     }
 
     public int getHitPoints() {
-        return _hitPoints;
+        return hitPoints;
     }
 
     public void setWeapon(String weapon) {
-        _weapon = weapon;
+        this.weapon = weapon;
     }
 
     public String getWeapon() {
-        return _weapon;
+        return weapon;
     }
 
     public void setArmor(String armor) {
-        _armor = armor;
+        this.armor = armor;
     }
 
     public String getArmor() {
-        return _armor;
+        return armor;
     }
 
     public void setHelm(String helm) {
-        _helm = helm;
+        this.helm = helm;
     }
 
     public String getHelm() {
-        return _helm;
+        return helm;
     }
 }

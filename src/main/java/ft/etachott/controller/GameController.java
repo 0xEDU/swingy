@@ -3,17 +3,32 @@ package ft.etachott.controller;
 import ft.etachott.component.InputValidator;
 import ft.etachott.service.GameService;
 import ft.etachott.view.IGameView;
+import jakarta.annotation.PostConstruct;
 import org.jline.reader.EndOfFileException;
 import org.jline.reader.UserInterruptException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class GameController {
-	final private IGameView _gameView;
-	final private GameService _gameService = new GameService();
+	private IGameView _gameView;
+	final private GameService _gameService;
+	final private ApplicationContext _applicationContext;
 
-	public GameController(IGameView gameView) {
-		_gameView = gameView;
+	@Autowired
+	public GameController(IGameView gameView, GameService gameService, ApplicationContext applicationContext) {
+		this._gameView = gameView;
+		this._gameService = gameService;
+		this._applicationContext = applicationContext;
 	}
 
+	public void setGameView(IGameView gameView) {
+		this._gameView = gameView;
+	}
+
+	@PostConstruct
 	public void run() {
 		_gameView.initialView();
 		while (true) {
@@ -22,15 +37,17 @@ public class GameController {
 			} catch (UserInterruptException ignored) {
 			} catch (EndOfFileException e) {
 				quit();
-				System.exit(0);
+				break;
 			}
 		}
 	}
 
 	public void quit() {
 		_gameView.exitView();
-		System.exit(0);
+		int exitCode = SpringApplication.exit(_applicationContext, () -> 0);
+		System.exit(exitCode);
 	}
+
 	public void create() {
 		_gameView.createCharacterView();
 		String[] rawCharacterInput = _gameView.getRawCharacterInput();

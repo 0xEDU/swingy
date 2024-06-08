@@ -3,7 +3,9 @@ package ft.etachott.view;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.widget.AutosuggestionWidgets;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConsoleView implements IGameView {
     private final LineReader _reader;
 
