@@ -1,6 +1,7 @@
 package ft.etachott.controller;
 
 import ft.etachott.component.InputValidator;
+import ft.etachott.model.Character;
 import ft.etachott.service.GameService;
 import ft.etachott.view.IGameView;
 import jakarta.annotation.PostConstruct;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 @Controller
 public class GameController {
@@ -56,7 +59,8 @@ public class GameController {
 	}
 
 	public void choose() {
-		_gameView.chooseCharacterView();
+		List<Character> characterList = _gameService.getCharacters();
+		_gameView.chooseCharacterView(characterList);
 	}
 
 	public void handleInput(String input) {

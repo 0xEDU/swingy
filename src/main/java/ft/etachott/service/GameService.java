@@ -6,6 +6,7 @@ import ft.etachott.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -41,5 +42,9 @@ public class GameService {
         //         name, role, 1, 0, rolesMap.get(role)[0], rolesMap.get(role)[1], rolesMap.get(role)[2]
         // );
         // _gameRepository.save(newCharacter);
+    }
+
+    public List<Character> getCharacters() {
+        return _characterRepository.findAll();
     }
 }

@@ -1,9 +1,12 @@
 package ft.etachott.view;
 
+import ft.etachott.model.Character;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.widget.AutosuggestionWidgets;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class ConsoleView implements IGameView {
@@ -75,8 +78,27 @@ public class ConsoleView implements IGameView {
         System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
     }
 
-    public void chooseCharacterView() {
-        System.out.println("choose character");
+    private void displayCharacter(Character character) {
+        System.out.println("│ • ID: " + character.getId());
+        System.out.println("│ • Name: " + character.getName());
+        System.out.println("│ • Role: " + character.getRole());
+        System.out.println("│ • Level: " + character.getLevel());
+        System.out.println("│ • Exp: " + character.getExp());
+        System.out.println("│ • Attack: " + character.getAttack());
+        System.out.println("│ • Defense: " + character.getDefense());
+        System.out.println("│ • Hit Points: " + character.getHitPoints());
+        System.out.println("│ • Weapon: " + character.getWeapon());
+        System.out.println("│ • Armor: " + character.getArmor());
+        System.out.println("│ • Helm: " + character.getHelm());
+    }
+
+    public void chooseCharacterView(List<Character> characters) {
+        characters.forEach(character -> {
+            System.out.println("╭──────────────────────────────────────────────────────────────────────────────────── •");
+            displayCharacter(character);
+            System.out.println("╰──────────────────────────────────────────────────────────────────────────────────── •");
+        });
+        String strId = prettyReadline("Enter the character ID: ");
     }
 
     public void exitView() {
