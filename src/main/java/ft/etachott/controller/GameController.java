@@ -27,6 +27,20 @@ public class GameController {
 		}
 	}
 
+	public void quit() {
+		_gameView.exitView();
+		System.exit(0);
+	}
+	public void create() {
+		_gameView.createCharacterView();
+		String[] rawCharacterInput = _gameView.getRawCharacterInput();
+		InputValidator.validateCharacterCreationInput(rawCharacterInput);
+		_gameService.createCharacter(rawCharacterInput);
+	}
+
+	public void choose() {
+		_gameView.chooseCharacterView();
+	}
 
 	public void handleInput(String input) {
 		try {
@@ -34,13 +48,10 @@ public class GameController {
 				case "exit":
 					quit();
 				case "create":
-					_gameView.createCharacterView();
-					String[] rawCharacterInput = _gameView.getRawCharacterInput();
-					InputValidator.validateCharacterCreationInput(rawCharacterInput);
-					_gameService.createCharacter(rawCharacterInput);
+					create();
 					break ;
 				case "choose":
-					_gameView.chooseCharacterView();
+					choose();
 					break ;
 			}
 		} catch (IllegalArgumentException e) {
@@ -48,8 +59,4 @@ public class GameController {
 		}
 	}
 
-	public void quit() {
-		_gameView.exitView();
-		System.exit(0);
-	}
 }
