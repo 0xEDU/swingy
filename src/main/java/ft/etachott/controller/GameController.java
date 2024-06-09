@@ -40,13 +40,13 @@ public class GameController {
 				handleInput(_gameView.getInput());
 			} catch (UserInterruptException ignored) {
 			} catch (EndOfFileException e) {
-				quit();
+				exit();
 				break;
 			}
 		}
 	}
 
-	public void quit() {
+	public void exit() {
 		_gameView.exitView();
 		int exitCode = SpringApplication.exit(_applicationContext, () -> 0);
 		System.exit(exitCode);
