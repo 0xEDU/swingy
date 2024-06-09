@@ -92,14 +92,19 @@ public class ConsoleView implements IGameView {
         System.out.println("│ • Helm: " + character.getHelm());
     }
 
-    public void chooseCharacterView(List<Character> characters) {
+    public void chooseCharacterView(List<Character> characters) throws NumberFormatException {
         characters.forEach(character -> {
             System.out.println("╭──────────────────────────────────────────────────────────────────────────────────── •");
             displayCharacter(character);
             System.out.println("╰──────────────────────────────────────────────────────────────────────────────────── •");
         });
-        String strId = prettyReadline("Enter the character ID: ");
     }
+
+    public int getCharacterId() {
+        String strId = prettyReadline("Enter the character ID: ");
+        return Integer.parseInt(strId);
+    }
+
 
     public void exitView() {
         System.out.println("See you later!");
