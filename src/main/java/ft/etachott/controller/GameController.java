@@ -28,10 +28,6 @@ public class GameController {
 		this._applicationContext = applicationContext;
 	}
 
-	public void setGameView(IGameView gameView) {
-		this._gameView = gameView;
-	}
-
 	@PostConstruct
 	public void run() {
 		_gameView.initialView();
@@ -61,7 +57,17 @@ public class GameController {
 
 	public void choose() {
 		List<Character> characterList = _gameService.getCharacters();
-		_gameView.chooseCharacterView(characterList);
+		try {
+			_gameView.chooseCharacterView(characterList);
+			int id = _gameView.getCharacterId();
+			Character character = characterList.get(id);
+			_gameService.setCharacter(character);
+			_gameService.nextState();
+		} catch (NumberFormatException e) {
+			_gameView.errorView("Invalid ID");
+		} catch (IndexOutOfBoundsException e) {
+			_gameView.errorView("Character not found");
+		}
 	}
 
 	public void handleInput(String input) {
