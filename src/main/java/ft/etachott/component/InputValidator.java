@@ -17,4 +17,17 @@ public class InputValidator {
             throw new IllegalArgumentException("Invalid character class: " + characterClass);
         }
     }
+
+    public static void validateCharacterId(String rawId, int arrayLen) throws IllegalArgumentException {
+        int id;
+
+        try {
+            id = Integer.parseInt(rawId);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid character id: " + rawId);
+        }
+        if (id > arrayLen - 1 || id < 0) {
+            throw new IllegalArgumentException("Character not found!");
+        }
+    }
 }
