@@ -88,4 +88,8 @@ public class GameController {
 		}
 	}
 
+	public void setGameView(IGameView gameView) {
+		this._gameView = gameView;
+	}
+
 }
