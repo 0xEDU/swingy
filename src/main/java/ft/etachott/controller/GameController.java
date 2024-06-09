@@ -57,17 +57,15 @@ public class GameController {
 
 	public void choose() {
 		List<Character> characterList = _gameService.getCharacters();
-		try {
-			_gameView.chooseCharacterView(characterList);
-			int id = _gameView.getCharacterId();
-			Character character = characterList.get(id);
-			_gameService.setCharacter(character);
-			_gameService.nextState();
-		} catch (NumberFormatException e) {
-			_gameView.errorView("Invalid ID");
-		} catch (IndexOutOfBoundsException e) {
-			_gameView.errorView("Character not found");
-		}
+		_gameView.chooseCharacterView(characterList);
+		String rawId = _gameView.getRawCharacterId();
+		InputValidator.validateCharacterId(rawId, characterList.size());
+		_gameService.chooseCharacter(Integer.parseInt(rawId), characterList);
+	}
+
+	public void start() {
+		_gameView.gameStartMessageView();
+		_gameService.startGame();
 	}
 
 	public void handleInput(String input) {
@@ -83,10 +81,11 @@ public class GameController {
 				case "choose":
 					if (_gameService.getCurrentState() == StateEnum.SELECTING_CHARACTER) {
 						choose();
+						start();
 						break;
 					}
 				default:
-					_gameView.errorView("Invalid input");
+					_gameView.errorView("Invalid input: " + input);
 					break;
 			}
 		} catch (IllegalArgumentException e) {

@@ -49,6 +49,11 @@ public class GameService {
         _characterRepository.save(newCharacter);
     }
 
+    public void chooseCharacter(int id, List<Character> characterList) {
+        Character character = characterList.get(id);
+        setCharacter(character);
+    }
+
     public List<Character> getCharacters() {
         return _characterRepository.findAll();
     }
@@ -69,4 +74,9 @@ public class GameService {
         _stateMachineService.nextState();
     }
 
+    public void startGame() {
+        nextState();
+        // TODO: Generate a map (and create a map service)
+        // TODO:
+    }
 }
