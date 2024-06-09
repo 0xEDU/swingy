@@ -1,6 +1,7 @@
 package ft.etachott.controller;
 
 import ft.etachott.component.InputValidator;
+import ft.etachott.enums.StateEnum;
 import ft.etachott.model.Character;
 import ft.etachott.service.GameService;
 import ft.etachott.view.IGameView;
@@ -67,13 +68,20 @@ public class GameController {
 		try {
 			switch (input) {
 				case "exit":
-					quit();
+					exit();
 				case "create":
-					create();
-					break ;
+					if (_gameService.getCurrentState() == StateEnum.SELECTING_CHARACTER) {
+						create();
+						break ;
+					}
 				case "choose":
-					choose();
-					break ;
+					if (_gameService.getCurrentState() == StateEnum.SELECTING_CHARACTER) {
+						choose();
+						break;
+					}
+				default:
+					_gameView.errorView("Invalid input");
+					break;
 			}
 		} catch (IllegalArgumentException e) {
 			_gameView.errorView(e.getMessage());
