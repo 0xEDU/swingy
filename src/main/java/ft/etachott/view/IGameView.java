@@ -11,7 +11,8 @@ public interface IGameView {
     void exitView();
     String getInput();
     String[] getRawCharacterInput();
-    int getCharacterId();
+    String getRawCharacterId();
     void characterRoleView();
     void errorView(String error);
+    void gameStartMessageView();
 }

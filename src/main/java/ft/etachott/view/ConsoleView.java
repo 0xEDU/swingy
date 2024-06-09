@@ -46,9 +46,18 @@ public class ConsoleView implements IGameView {
         System.out.println("─➤ ERROR: " + error);
     }
 
+    public void gameStartMessageView() {
+        System.out.println("Press any key to start...");
+        getInput();
+    }
+
     private String prettyReadline(String promptMessage) {
         System.out.println("╭──────────────────────────────────────────────────────────────────────────────────── •");
         return _reader.readLine("╰➤ " + promptMessage);
+    }
+
+    private void clearScreen() {
+        System.out.print("\033[H\033[2J");
     }
 
     public String[] getRawCharacterInput() {
@@ -59,7 +68,7 @@ public class ConsoleView implements IGameView {
     }
 
     public void initialView() {
-        System.out.print("\033[H\033[2J");
+        clearScreen();
         System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
         System.out.println("│ CyberSWINGY                                                                         │");
         System.out.println("│ The Roleplaying Game of the Dark Future                                             │");
@@ -73,6 +82,7 @@ public class ConsoleView implements IGameView {
     }
 
     public void createCharacterView() {
+        clearScreen();
         System.out.println("╭─────────────────────────────────────────────────────────────────────────────────────╮");
         System.out.println("│ So you wanna be a cyberpunk? Choose your name and get a role.                       │");
         System.out.println("╰─────────────────────────────────────────────────────────────────────────────────────╯");
@@ -93,6 +103,8 @@ public class ConsoleView implements IGameView {
     }
 
     public void chooseCharacterView(List<Character> characters) throws NumberFormatException {
+        clearScreen();
+        System.out.println("Available characters:");
         characters.forEach(character -> {
             System.out.println("╭──────────────────────────────────────────────────────────────────────────────────── •");
             displayCharacter(character);
@@ -100,9 +112,8 @@ public class ConsoleView implements IGameView {
         });
     }
 
-    public int getCharacterId() {
-        String strId = prettyReadline("Enter the character ID: ");
-        return Integer.parseInt(strId);
+    public String getRawCharacterId() {
+        return prettyReadline("Enter the character ID: ");
     }
 
 
