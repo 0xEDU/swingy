@@ -1,6 +1,7 @@
 package ft.etachott.service;
 
 import ft.etachott.builder.CharacterBuilder;
+import ft.etachott.enums.StateEnum;
 import ft.etachott.model.Character;
 import ft.etachott.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,18 @@ import java.util.Map;
 @Service
 public class GameService {
     private final CharacterRepository _characterRepository;
+    private final StateMachineService _stateMachineService;
+    private final CharacterService _characterService;
 
     @Autowired
-    public GameService(CharacterRepository characterRepository) {
+    public GameService(
+            CharacterRepository characterRepository,
+            StateMachineService stateMachineService,
+            CharacterService characterService
+    ) {
         _characterRepository = characterRepository;
+        _stateMachineService = stateMachineService;
+        _characterService = characterService;
     }
 
     public void createCharacter(String[] rawCharacterInput) {
@@ -38,13 +47,26 @@ public class GameService {
                 .setHitPoints(rolesMap.get(role)[2])
                 .build();
         _characterRepository.save(newCharacter);
-        // Character newCharacter = new Character(
-        //         name, role, 1, 0, rolesMap.get(role)[0], rolesMap.get(role)[1], rolesMap.get(role)[2]
-        // );
-        // _gameRepository.save(newCharacter);
     }
 
     public List<Character> getCharacters() {
         return _characterRepository.findAll();
     }
+
+    public Character getCharacter() {
+        return _characterService.getCharacter();
+    }
+
+    public void setCharacter(Character character) {
+        _characterService.setCharacter(character);
+    }
+
+    public StateEnum getCurrentState() {
+        return _stateMachineService.getCurrentState();
+    }
+
+    public void nextState() {
+        _stateMachineService.nextState();
+    }
+
 }
